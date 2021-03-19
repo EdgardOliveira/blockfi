@@ -105,7 +105,7 @@ export function CreateAccountPage() {
   });
 
   async function enviarDados(values) {
-    const resp = await fetch('http://localhost:3000/api/autenticacao/registro', {
+    const resp = await fetch('https://blockfi.vercel.app/api/autenticacao/registro', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

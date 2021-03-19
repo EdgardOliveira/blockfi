@@ -190,7 +190,7 @@ export default function ListaRede({redes} : any) {
 }
 
 ListaRede.getInitialProps = async (ctx: NextPageContext) => {
-  const res = await getIniP('http://localhost:3000/api/redes', ctx);
+  const res = await getIniP('https://blockfi.vercel.app/api/redes', ctx);
   const json:Rede[] = res.redes;
   console.log(JSON.stringify(json));
 
