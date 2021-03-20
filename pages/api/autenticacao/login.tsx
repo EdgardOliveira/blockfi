@@ -3,6 +3,7 @@ import { sign } from 'jsonwebtoken';
 import { NextApiRequest, NextApiResponse } from 'next';
 import {query} from '../../../lib/db/db';
 import cookie from 'cookie';
+
 export default async function login(req: NextApiRequest, res: NextApiResponse) {
     switch (req.method) {
         case "POST":
@@ -33,6 +34,15 @@ export async function verificarCredenciais(req: NextApiRequest, res: NextApiResp
             if (!err && result) {
                 const claims = { sub: usuario.id, myPersonEmail: usuario.email };
                 const jwt = sign(claims, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+
+                // res.setHeader('Access-Control-Allow-Credentials', );
+                res.setHeader('Access-Control-Allow-Origin', '*');
+                res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+                res.setHeader(
+                  'Access-Control-Allow-Headers',
+                  'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+                );
 
                 res.setHeader('Set-Cookie', cookie.serialize('token', jwt, {
                     httpOnly: true,
