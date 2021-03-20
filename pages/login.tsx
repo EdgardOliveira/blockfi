@@ -86,7 +86,7 @@ export function LoginPage() {
 
   async function enviarDados(values) {
 
-    const resp = await fetch('https://blockfi.vercel.app/api/autenticacao/login', {
+    const resp = await fetch(`/api/autenticacao/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

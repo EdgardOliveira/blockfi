@@ -61,7 +61,7 @@ export default function CreateAccountPage() {
       setTimeout(() => {
         alert(JSON.stringify(values, null, 2));
         formik.setSubmitting(false);
-      }, 3000);
+      }, 500);
     },
   });
 

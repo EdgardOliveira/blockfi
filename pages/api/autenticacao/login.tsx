@@ -16,6 +16,14 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
 export async function verificarCredenciais(req: NextApiRequest, res: NextApiResponse) {
     const {email, senha} = req.body;
     try {
+        if (!email || !senha ) {
+            return res.status(400).json({
+                sucesso: false,
+                mensagem: 'Preencha os campos obrigatórios.',
+                enviado: req,
+            });
+        }
+
         const usuario: any = await query(
             'SELECT * FROM usuarios where email = ?',
             [email]
@@ -27,16 +35,16 @@ export async function verificarCredenciais(req: NextApiRequest, res: NextApiResp
                 const jwt = sign(claims, process.env.JWT_SECRET, { expiresIn: '1h' });
 
                 res.setHeader('Set-Cookie', cookie.serialize('token', jwt, {
-                    httpOnly: true,
-                    secure: process.env.NODE_ENV !== 'development',
-                    sameSite: 'strict',
+                    // httpOnly: true,
+                    // secure: process.env.NODE_ENV !== 'development',
+                    // sameSite: 'strict',
                     maxAge: 3600,
                     path: '/'
                 }));
 
                 res.status(200).json({
                     sucesso: true,
-                    mensagem: 'Usuário autenticado com sucesso!',
+                    mensagem: 'Autenticado com sucesso!',
                     token: jwt,
                     usuario: usuario
                 });

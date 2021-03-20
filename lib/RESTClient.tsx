@@ -20,7 +20,8 @@ export async function getIniP(url: string, ctx: NextPageContext) {
 
   if(resp.status === 401 && ctx.req) {
     ctx.res?.writeHead(302, {
-      Location: 'https://blockfi.vercel.app/login'
+      // Location: `${process.env.BASE_URL}/login`
+      Location: '/login'
     });
     ctx.res?.end();
     return;

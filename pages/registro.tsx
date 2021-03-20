@@ -100,12 +100,12 @@ export function CreateAccountPage() {
     onSubmit: (values) => {
       setTimeout(() => {
         enviarDados(values);
-      }, 3000);
+      }, 500);
     },
   });
 
   async function enviarDados(values) {
-    const resp = await fetch('https://blockfi.vercel.app/api/autenticacao/registro', {
+    const resp = await fetch(`/api/autenticacao/registro`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

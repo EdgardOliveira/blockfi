@@ -15,19 +15,9 @@ export default async function registro(req: NextApiRequest, res: NextApiResponse
 export async function salvar(req: NextApiRequest, res: NextApiResponse) {
   const { nome, sobrenome, email, senha, grupo_id } = req.body;
 
-  console.log('API Recebeu:\n' +
-    'Nome:' + nome +
-    'Sobrenome:' + sobrenome +
-    'E-mail:' + email +
-    'Senha:' + senha +
-    'Grupo:' + grupo_id,
-  );
-
-  console.log(`registro salvar body:\n${JSON.stringify(req.body)}`)
-
   try {
 
-    if (nome.isEmpty || sobrenome.isEmpty || email.isEmpty || senha.isEmpty || !grupo_id) {
+    if (!nome || !sobrenome || !email || !senha || !grupo_id) {
       return res.status(400).json({
         sucesso: false,
         mensagem: 'Preencha os campos obrigatórios.',
@@ -42,16 +32,12 @@ export async function salvar(req: NextApiRequest, res: NextApiResponse) {
         [nome, sobrenome, email, hash, grupo_id],
       );
 
-      console.log("resultado")
-
       const usuario = await query(
         `SELECT nome, sobrenome, email, senha, grupo_id
          FROM usuarios
          WHERE id = ?`,
         [resultado.insertId],
       );
-
-      console.log("consultando...")
 
       return res.status(201).json({
         sucesso: true,

@@ -57,8 +57,6 @@ export async function salvar(req: NextApiRequest, res: NextApiResponse) {
       [nome, ssid, status],
     );
 
-    console.log('resultado');
-
     const rede = await query(
       `SELECT nome, ssid, status
        FROM redes
@@ -66,14 +64,11 @@ export async function salvar(req: NextApiRequest, res: NextApiResponse) {
       [resultado.insertId],
     );
 
-    console.log('consultando...');
-
     return res.status(201).json({
       sucesso: true,
       mensagem: 'Registro cadastrado com sucesso!',
       rede: rede,
     });
-
   } catch (e) {
     res.status(405).json({
       sucesso: false,

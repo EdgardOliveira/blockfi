@@ -22,6 +22,7 @@ import ConfirmationDialog from '../../components/screen/ConfirmationDialog/Confi
 import { NextPageContext } from 'next';
 import { excluirDados, getIniP } from '../../lib/RESTClient';
 import { Rede } from '../../lib/Rede';
+import fetch from 'isomorphic-unfetch';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -190,7 +191,14 @@ export default function ListaRede({redes} : any) {
 }
 
 ListaRede.getInitialProps = async (ctx: NextPageContext) => {
-  const res = await getIniP('https://blockfi.vercel.app/api/redes', ctx);
+
+  let url;
+  if(!process.env.BASE_URL)
+    url = '/api/redes';
+  else
+    url = `${process.env.BASE_URL}/api/redes`;
+
+  const res = await getIniP(url, ctx);
   const json:Rede[] = res.redes;
   console.log(JSON.stringify(json));
 
