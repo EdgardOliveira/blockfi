@@ -35,7 +35,7 @@ export async function verificarCredenciais(req: NextApiRequest, res: NextApiResp
                 const claims = { sub: usuario.id, myPersonEmail: usuario.email };
                 const jwt = sign(claims, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-
+                res.setHeader('Source', '/api/(.*)');
                 res.setHeader('Access-Control-Allow-Credentials', 'true');
                 res.setHeader('Access-Control-Allow-Origin', '*');
                 res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
@@ -45,9 +45,9 @@ export async function verificarCredenciais(req: NextApiRequest, res: NextApiResp
                 );
 
                 res.setHeader('Set-Cookie', cookie.serialize('token', jwt, {
-                    // httpOnly: true,
-                    // secure: process.env.NODE_ENV !== 'development',
-                    // sameSite: 'strict',
+                    httpOnly: true,
+                    secure: process.env.NODE_ENV !== 'development',
+                    sameSite: 'strict',
                     maxAge: 3600,
                     path: '/'
                 }));
