@@ -4,7 +4,7 @@ import Router from 'next/router';
 
 let cookie;
 
-export async function getIniP(url: string, ctx: NextPageContext) {
+export async function getCookies(url: string, ctx: NextPageContext) {
   cookie = ctx.req?.headers.cookie;
 
   const resp = await fetch(url, {
@@ -36,7 +36,7 @@ export async function obterDadosId(url:string) {
     headers: {
       cookie: cookie!
     },
-    credentials: 'same-origin',
+    // credentials: 'same-origin',
   })
   const json = await res.json();
   return json;
@@ -48,7 +48,7 @@ export async function postarDados(url:string, corpo) {
     headers: {
       cookie: cookie!
     },
-    credentials: 'same-origin',
+    // credentials: 'same-origin',
     body: JSON.stringify(corpo),
   })
   const json = await res.json();
@@ -61,7 +61,7 @@ export async function atualizarDados(url:string, corpo) {
     headers: {
       cookie: cookie!
     },
-    credentials: 'same-origin',
+    // credentials: 'same-origin',
     body: JSON.stringify(corpo),
   })
   const json = await res.json();
@@ -74,7 +74,7 @@ export async function excluirDados(url:string, id:number){
       headers: {
         cookie: cookie!
       },
-      credentials: 'same-origin',
+      // credentials: 'same-origin',
       body: JSON.stringify({
         id: id
       }),

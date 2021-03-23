@@ -18,7 +18,7 @@ export async function verificarCredenciais(req: NextApiRequest, res: NextApiResp
     const {email, senha} = req.body;
     try {
         if (!email || !senha ) {
-            return res.status(400).json({
+            return await res.status(400).json({
                 sucesso: false,
                 mensagem: 'Preencha os campos obrigatórios.',
                 enviado: req,
@@ -30,7 +30,7 @@ export async function verificarCredenciais(req: NextApiRequest, res: NextApiResp
             [email]
         );
 
-        compare(senha, usuario[0].senha, function(err, result) {
+        compare(senha, usuario[0].senha, async function(err, result) {
             if (!err && result) {
                 const claims = { sub: usuario.id, myPersonEmail: usuario.email };
                 const jwt = sign(claims, process.env.JWT_SECRET, { expiresIn: '1h' });
@@ -47,19 +47,19 @@ export async function verificarCredenciais(req: NextApiRequest, res: NextApiResp
                 res.setHeader('Set-Cookie', cookie.serialize('token', jwt, {
                     httpOnly: true,
                     secure: process.env.NODE_ENV !== 'development',
-                    sameSite: 'strict',
+                    // sameSite: 'strict',
                     maxAge: 3600,
                     path: '/'
                 }));
 
-                res.status(200).json({
+                return res.status(200).json({
                     sucesso: true,
                     mensagem: 'Autenticado com sucesso!',
                     token: jwt,
                     usuario: usuario
                 });
             } else {
-                res.status(401).json({
+                return res.status(401).json({
                     sucesso: false,
                     mensagem: "Credenciais inválidas",
                     enviado: req.body
@@ -67,7 +67,7 @@ export async function verificarCredenciais(req: NextApiRequest, res: NextApiResp
             }
         });
     } catch (e) {
-        res.status(405).json({
+        return res.status(405).json({
             sucesso: false,
             mensagem: "Ocorreu um erro ao tentar fazer login.",
             erro: e.message,

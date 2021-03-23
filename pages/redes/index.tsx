@@ -20,7 +20,7 @@ import { useEffect, useState } from 'react';
 import LayoutWithMenu from '../../components/layout/LayoutWithMenu/LayoutWithMenu';
 import ConfirmationDialog from '../../components/screen/ConfirmationDialog/ConfirmationDialog';
 import { NextPageContext } from 'next';
-import { excluirDados, getIniP } from '../../lib/RESTClient';
+import { excluirDados, getCookies } from '../../lib/RESTClient';
 import { Rede } from '../../lib/Rede';
 import fetch from 'isomorphic-unfetch';
 
@@ -195,8 +195,10 @@ ListaRede.getInitialProps = async (ctx: NextPageContext) => {
   else
     url = `${process.env.BASE_URL}/api/redes`;
 
-  const res = await getIniP(url, ctx);
+  const res = await getCookies(url, ctx);
   const json:Rede[] = res.redes;
 
-  return {redes: json};
+  return {
+    redes: json
+  };
 }

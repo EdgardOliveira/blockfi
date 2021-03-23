@@ -105,7 +105,7 @@ export function LoginPage() {
     if (resposta.sucesso === true) {
       handleResponse('success', `Usuário autenticado(a) com sucesso!`);
       console.log('sucesso!');
-      await Router.push('/redes');
+      await Router.push('/dashboard');
     } else {
       handleResponse('error', 'Erro: ' + resposta.mensagem);
       console.log('erro!');
