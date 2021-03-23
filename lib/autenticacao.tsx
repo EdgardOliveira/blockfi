@@ -18,7 +18,7 @@ res: NextApiResponse,
         erro: JSON.stringify(err),
       });
     });
-  }else if( req.headers.authorization!){
+  }else if(req.headers.authorization!){
     //esta pelo app
     verify(req.headers.authorization!, process.env.JWT_SECRET, (async function(err, decoded) {
       if (!err && decoded) {

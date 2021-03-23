@@ -1,4 +1,5 @@
-import { compare } from 'bcrypt';
+// import { compare } from 'bcrypt';
+import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { NextApiRequest, NextApiResponse } from 'next';
 import {query} from '../../../lib/db/db';
@@ -45,18 +46,12 @@ export async function verificarCredenciais(req: NextApiRequest, res: NextApiResp
                 );
 
                 res.setHeader('Set-Cookie', cookie.serialize('token', jwt, {
-                    httpOnly: false, //true,
-                    secure: false,//process.env.NODE_ENV !== 'development',
-                    sameSite: 'none',//'strict',
+                    httpOnly: true,
+                    secure: process.env.NODE_ENV !== 'development',
+                    sameSite: 'strict',
                     maxAge: 3600,
                     path: '/'
                 }));
-
-                // res.setHeader('Set-Cookie', cookie.serialize('token', jwt, {
-                //         maxAge: 3600,
-                //         path: '/'
-                // }));
-
 
                 return res.status(200).json({
                     sucesso: true,

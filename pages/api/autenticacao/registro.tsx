@@ -1,4 +1,5 @@
-import { hash } from 'bcrypt';
+// import { hash } from 'bcrypt';
+import { hash } from 'bcryptjs';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { query } from '../../../lib/db/db';
 
