@@ -45,9 +45,9 @@ export async function verificarCredenciais(req: NextApiRequest, res: NextApiResp
                 );
 
                 res.setHeader('Set-Cookie', cookie.serialize('token', jwt, {
-                    httpOnly: true,
-                    secure: process.env.NODE_ENV !== 'development',
-                    sameSite: 'strict',
+                    // httpOnly: true,
+                    // secure: process.env.NODE_ENV !== 'development',
+                    // sameSite: 'strict',
                     maxAge: 3600,
                     path: '/'
                 }));
