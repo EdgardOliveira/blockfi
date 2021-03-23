@@ -19,13 +19,17 @@
     "bcrypt": "^5.0.1",
     "cookie": "^0.4.1",
     "formik": "^2.2.5",
+    "fs": "^0.0.1-security",
     "isomorphic-unfetch": "^3.1.0",
     "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "net": "^1.0.2",
     "next": "10.0.3",
     "notistack": "^1.0.5",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "serverless-mysql": "^1.5.4",
+    "tls": "^0.0.1",
     "yup": "^0.31.1"
   },
   "devDependencies": {
