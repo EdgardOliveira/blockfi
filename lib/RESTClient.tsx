@@ -14,11 +14,13 @@ export async function getCookies(url: string, ctx: NextPageContext) {
   });
 
   if(resp.status === 401 && !ctx.req) {
+    console.log('Cliente...')
     Router.replace('/login');
     return {};
   }
 
   if(resp.status === 401 && ctx.req) {
+    console.log('Servidor...')
     ctx.res?.writeHead(302, {
       Location: '/login'
     });
