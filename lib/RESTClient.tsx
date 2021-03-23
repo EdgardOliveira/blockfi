@@ -22,7 +22,7 @@ export async function getCookies(url: string, ctx: NextPageContext) {
   if(resp.status === 401 && ctx.req) {
     console.log('Servidor...')
     ctx.res?.writeHead(302, {
-      Location: '/login'
+      Location: 'https://blockfi.vercel.app/login'
     });
     ctx.res?.end();
     return;
@@ -38,7 +38,7 @@ export async function obterDadosId(url:string) {
     headers: {
       cookie: cookie!
     },
-    // credentials: 'same-origin',
+    credentials: 'same-origin',
   })
   const json = await res.json();
   return json;
@@ -50,7 +50,7 @@ export async function postarDados(url:string, corpo) {
     headers: {
       cookie: cookie!
     },
-    // credentials: 'same-origin',
+    credentials: 'same-origin',
     body: JSON.stringify(corpo),
   })
   const json = await res.json();
@@ -63,7 +63,7 @@ export async function atualizarDados(url:string, corpo) {
     headers: {
       cookie: cookie!
     },
-    // credentials: 'same-origin',
+    credentials: 'same-origin',
     body: JSON.stringify(corpo),
   })
   const json = await res.json();
@@ -76,7 +76,7 @@ export async function excluirDados(url:string, id:number){
       headers: {
         cookie: cookie!
       },
-      // credentials: 'same-origin',
+      credentials: 'same-origin',
       body: JSON.stringify({
         id: id
       }),

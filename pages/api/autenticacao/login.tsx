@@ -36,26 +36,26 @@ export async function verificarCredenciais(req: NextApiRequest, res: NextApiResp
                 const jwt = sign(claims, process.env.JWT_SECRET, { expiresIn: '1h' });
 
                 // res.setHeader('Source', '/api/(.*)');
-                // res.setHeader('Access-Control-Allow-Credentials', 'true');
-                // res.setHeader('Access-Control-Allow-Origin', '*');
-                // res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-                // res.setHeader(
-                //   'Access-Control-Allow-Headers',
-                //   'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-                // );
-                //
-                // res.setHeader('Set-Cookie', cookie.serialize('token', jwt, {
-                //     httpOnly: false, //true,
-                //     secure: false,//process.env.NODE_ENV !== 'development',
-                //     sameSite: 'none',//'strict',
-                //     maxAge: 3600,
-                //     path: '/'
-                // }));
+                res.setHeader('Access-Control-Allow-Credentials', 'true');
+                res.setHeader('Access-Control-Allow-Origin', '*');
+                res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+                res.setHeader(
+                  'Access-Control-Allow-Headers',
+                  'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+                );
 
                 res.setHeader('Set-Cookie', cookie.serialize('token', jwt, {
-                        maxAge: 3600,
-                        path: '/'
+                    httpOnly: false, //true,
+                    secure: false,//process.env.NODE_ENV !== 'development',
+                    sameSite: 'none',//'strict',
+                    maxAge: 3600,
+                    path: '/'
                 }));
+
+                // res.setHeader('Set-Cookie', cookie.serialize('token', jwt, {
+                //         maxAge: 3600,
+                //         path: '/'
+                // }));
 
 
                 return res.status(200).json({
