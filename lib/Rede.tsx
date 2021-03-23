@@ -1,6 +1,6 @@
 export interface Rede {
   id?: string;
   ssid?: string;
-  nome?: string;
+  descricao?: string;
   status?: string;
 }

@@ -5,18 +5,14 @@ export default function Home() {
   return (
     <LayoutWithMenu>
       <Typography paragraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus
-        non enim praesent elementum facilisis leo vel. Risus at ultrices mi
-        tempus imperdiet. Semper risus in hendrerit gravida rutrum quisque non
-        tellus. Convallis convallis tellus id interdum velit laoreet id donec
-        ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl
-        suscipit adipiscing bibendum est ultricies integer quis. Cursus euismod
-        quis viverra nibh cras. Metus vulputate eu scelerisque felis imperdiet
-        proin fermentum leo. Mauris commodo quis imperdiet massa tincidunt. Cras
-        tincidunt lobortis feugiat vivamus at augue. At augue eget arcu dictum
-        varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt.
-        Lorem donec massa sapien faucibus et molestie ac.
+        BlockFi é um aplicativo que controla as redes de wi-fi detectadas, sendo capaz de bloquear ou permitir o acesso as memas.
+        Seu foco é atender a área corpotativa com o intuito é mitigar os riscos os quais uma empresa está submetida ao empregar
+        uma rede wi-fi de maneira displicente.
+        Com o aplicativo o proprietário poderá fazer o controle do uso das redes wi-fi detectadas, permitindo o acesso de
+        determinadas redes wi-fi para cada setor ou funcionário como também podendo bloqueá-las para a sua segurança.
+        Garantimos a confiabilidade e segunça desse projeto a medida que o mesmo parte de uma customização no AOSP.
+        Onde a classe WifiManager foi modificada e o método gatScanResults foi alterado e utilizamos a API SystemProperties para
+        persistir os dados relacionados as redes que serão permitidas ao usuário.
       </Typography>
       <Typography paragraph>
         Consequat mauris nunc congue nisi vitae suscipit. Fringilla est

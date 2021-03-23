@@ -75,7 +75,7 @@ export function LoginPage() {
     onSubmit: (values) => {
       setTimeout(() => {
         enviarDados(values);
-      }, 3000);
+      }, 500);
     },
   });
 

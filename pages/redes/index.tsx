@@ -55,15 +55,12 @@ export default function ListaRede({redes} : any) {
   async function excluir(id:number){
     try {
       const resposta = await excluirDados('/api/redes', id)
-      console.log('Resposta...\n' + await JSON.stringify(resposta));
 
       if (resposta.sucesso === true) {
         // handleResponse('success', `Rede: ${resposta.rede[0].nome} cadastrado(a) com sucesso!`);
-        console.log('sucesso!');
         // await Router.push('/redes');
       } else {
         // handleResponse('error', 'Mensagem: ' + resposta.mensagem + '\nErro: ' + resposta.erro);
-        console.log('erro!');
       }
     } catch (e) {
       throw Error(e.message)
@@ -141,8 +138,8 @@ export default function ListaRede({redes} : any) {
                 <TableCell component='th' scope='row'>
                   {row.id}
                 </TableCell>
-                <TableCell>{row.nome}</TableCell>
                 <TableCell>{row.ssid}</TableCell>
+                <TableCell>{row.descricao}</TableCell>
                 <TableCell>
                   {row.status == 'Permitido' ?
                     <IconButton aria-label='allowed'><Wifi /></IconButton> :
@@ -200,7 +197,6 @@ ListaRede.getInitialProps = async (ctx: NextPageContext) => {
 
   const res = await getIniP(url, ctx);
   const json:Rede[] = res.redes;
-  console.log(JSON.stringify(json));
 
   return {redes: json};
 }

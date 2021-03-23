@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { query } from '../../../lib/db/db';
-import { autenticado } from '../../../lib/autenticacao';
+import { query } from '../../lib/db/db';
+import { autenticado } from '../../lib/autenticacao';
 
-export default autenticado(async function redes(req: NextApiRequest, res: NextApiResponse) {
+export default autenticado(async function grupos(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case 'GET':
       listar(res);
@@ -22,13 +22,13 @@ export default autenticado(async function redes(req: NextApiRequest, res: NextAp
 export async function listar(res: NextApiResponse) {
   try {
     const resultado = await query(`
-        SELECT id, descricao, ssid, status
-        FROM redes`,
+        SELECT id, nome, descricao, status
+        FROM grupos`,
     );
     return res.status(200).json({
       sucesso: true,
       mensagem: 'Lista recuperada com sucesso!',
-      redes: resultado,
+      grupos: resultado,
     });
   } catch (e) {
     res.status(500).json({
@@ -40,10 +40,10 @@ export async function listar(res: NextApiResponse) {
 }
 
 export async function salvar(req: NextApiRequest, res: NextApiResponse) {
-  const { descricao, ssid, status } = JSON.parse(req.body);
+  const { nome, descricao, status } = JSON.parse(req.body);
 
   try {
-    if (!descricao || !ssid || !status) {
+    if (!nome || !descricao || !status) {
       return res.status(400).json({
         sucesso: false,
         mensagem: 'Preencha os campos obrigatórios.',
@@ -52,14 +52,14 @@ export async function salvar(req: NextApiRequest, res: NextApiResponse) {
     }
 
     const resultado: any = await query(`
-                INSERT INTO redes (descricao, ssid, status)
+                INSERT INTO grupos (nome, descricao, status)
                 VALUES (?, ?, ?)`,
-      [descricao, ssid, status],
+      [nome, descricao, status],
     );
 
-    const rede = await query(
-      `SELECT descricao, ssid, status
-       FROM redes
+    const grupo = await query(
+      `SELECT nome, descricao, status
+       FROM grupos
        WHERE id = ?`,
       [resultado.insertId],
     );
@@ -67,7 +67,7 @@ export async function salvar(req: NextApiRequest, res: NextApiResponse) {
     return res.status(201).json({
       sucesso: true,
       mensagem: 'Registro cadastrado com sucesso!',
-      rede: rede,
+      grupo: grupo,
     });
   } catch (e) {
     res.status(405).json({
@@ -80,10 +80,10 @@ export async function salvar(req: NextApiRequest, res: NextApiResponse) {
 }
 
 export async function atualizar(req: NextApiRequest, res: NextApiResponse) {
-  const { id, descricao, ssid, status } = JSON.parse(req.body);
+  const { id, nome, descricao, status } = JSON.parse(req.body);
 
   try {
-    if (!id || !descricao || !ssid || !status) {
+    if (!id || !nome || !descricao || !status) {
       return res.status(400).json({
         sucesso: false,
         mensagem: 'Preencha os campos obrigatórios.',
@@ -92,23 +92,23 @@ export async function atualizar(req: NextApiRequest, res: NextApiResponse) {
     }
 
     const resultado = await query(`
-                UPDATE redes
+                UPDATE grupos
                 set descricao=?,
-                    ssid=?,
+                    nome=?,
                     status=?
                 WHERE id = ?`,
-      [descricao, ssid, status, id],
+      [descricao, nome, status, id],
     );
-    const rede = await query(
+    const grupo = await query(
       `SELECT *
-       FROM redes
+       FROM grupos
        WHERE id = ?`,
       id,
     );
     return res.status(200).json({
       sucesso: true,
       mensagem: 'Registro atualizado com sucesso!',
-      rede: rede,
+      grupo: grupo,
     });
   } catch (e) {
     res.status(400).json({
@@ -132,14 +132,14 @@ export async function excluir(req: NextApiRequest, res: NextApiResponse) {
     }
     const resultado = await query(`
                 DELETE
-                FROM redes
+                FROM grupos
                 WHERE id = ?`,
       id,
     );
     return res.status(200).json({
       sucesso: true,
       mensagem: 'Registro excluído com sucesso!',
-      rede: resultado,
+      grupo: resultado,
     });
   } catch (e) {
     res.status(400).json({

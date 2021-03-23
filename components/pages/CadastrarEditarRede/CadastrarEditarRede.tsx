@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface IFormData {
   id?: number
-  nome?: string
+  descricao?: string
   ssid?: string
   status?: string
 }
@@ -73,7 +73,7 @@ export function Rede() {
 
   const initialValues: IFormData = {
     id: -1,
-    nome: '',
+    descricao: '',
     ssid: '',
     status: '',
   };
@@ -83,7 +83,7 @@ export function Rede() {
   }
 
   const formSchema = Yup.object().shape({
-    nome: Yup.string()
+    descricao: Yup.string()
       .required('Campo obrigatório')
       .min(5, 'O nome deve ter pelo menos 5 caracteres'),
     ssid: Yup.string()
@@ -110,17 +110,14 @@ export function Rede() {
   async function atualizar(values){
     try {
       const resposta = await atualizarDados('/api/redes', values);
-      console.log('Resposta...\n' + await JSON.stringify(resposta));
 
       formik.setSubmitting(false);
 
       if (resposta.sucesso === true) {
         handleResponse('success', `Rede: ${resposta.rede[0].nome} cadastrado(a) com sucesso!`);
-        console.log('sucesso!');
         Router.push('/redes');
       } else {
         handleResponse('error', 'Mensagem: ' + resposta.mensagem + '\nErro: ' + resposta.erro);
-        console.log('erro!');
       }
     } catch (e) {
       throw Error(e.message)
@@ -129,17 +126,14 @@ export function Rede() {
 
   async function postar(values) {
     const resposta = await postarDados('/api/redes', values)
-    console.log('Resposta...\n' + await JSON.stringify(resposta));
 
     formik.setSubmitting(false);
 
     if (resposta.sucesso === true) {
       handleResponse('success', `Rede: ${resposta.rede[0].nome} cadastrado(a) com sucesso!`);
-      console.log('sucesso!');
       Router.push('/redes');
     } else {
       handleResponse('error', 'Mensagem: ' + resposta.mensagem + '\nErro: ' + resposta.erro);
-      console.log('erro!');
     }
   }
 
@@ -153,13 +147,11 @@ export function Rede() {
       formik.setValues({
         id: rede.id,
         ssid: rede.ssid,
-        nome: rede.nome,
+        descricao: rede.descricao,
         status: rede.status,
       });
-      console.log('sucesso!');
     } else {
       handleResponse('error', 'Erro: ' + resposta.mensagem);
-      console.log('erro!');
     }
   }
 
@@ -206,18 +198,17 @@ export function Rede() {
               variant='outlined'
               margin='normal'
               fullWidth
-              id='nome'
-              label='Nome'
+              id='descricao'
+              label='Descrição'
               required
-              placeholder='Insira o nome da rede aqui'
-              name='nome'
-              autoComplete='nome'
+              placeholder='Insira a descrição da rede aqui'
+              name='descricao'
+              autoComplete='descricao'
               onChange={formik.handleChange}
-              value={formik.values.nome}
-              error={formik.touched.nome && Boolean(formik.errors.nome)}
-              helperText={formik.touched.nome && formik.errors.nome}
+              value={formik.values.descricao}
+              error={formik.touched.descricao && Boolean(formik.errors.descricao)}
+              helperText={formik.touched.descricao && formik.errors.descricao}
             />
-            {/*<FormControl variant='outlined' className={classes.formControl}>*/}
             <InputLabel htmlFor='outlined-age-native-simple'>Status</InputLabel>
             <Select
               native
@@ -236,7 +227,6 @@ export function Rede() {
               <option value={'Permitido'}>Permitido</option>
               <option value={'Bloqueado'}>Bloqueado</option>
             </Select>
-            {/*</FormControl>*/}
 
             <Button
               className={classes.submit}

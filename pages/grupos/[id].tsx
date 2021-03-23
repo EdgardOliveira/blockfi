@@ -1,6 +1,6 @@
 import {NextApiRequest, NextApiResponse} from "next";
-import {query} from "../../../lib/db/db";
-import {autenticado} from "../../../lib/autenticacao";
+import {query} from "../../lib/db/db";
+import {autenticado} from "../../lib/autenticacao";
 
 export default autenticado(async function especifico(req: NextApiRequest, res: NextApiResponse) {
     const {id} = req.query
@@ -13,15 +13,15 @@ export default autenticado(async function especifico(req: NextApiRequest, res: N
             });
         }
         const resultado = await query(`
-                    SELECT id, descricao, ssid, status
-                    FROM redes
+                    SELECT id, nome, descricao, status
+                    FROM grupos
                     WHERE id = ?`,
             [Number(id)]
         );
         return res.status(200).json({
             sucesso: true,
             mensagem: "Registro específico recuperado com sucesso!",
-            rede: resultado
+            grupo: resultado
         })
     } catch (e) {
         res.status(404).json({
