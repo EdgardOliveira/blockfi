@@ -13,8 +13,8 @@ export default autenticado(async function especifico(req: NextApiRequest, res: N
             });
         }
         const resultado = await query(`
-                    SELECT id, nome, sobrenome, email, grupo_id
-                    FROM redes
+                    SELECT id, nome, sobrenome, email, senha, grupo_id
+                    FROM usuarios
                     WHERE id = ?`,
             [Number(id)]
         );

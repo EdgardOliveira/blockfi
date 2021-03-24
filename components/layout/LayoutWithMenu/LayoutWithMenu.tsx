@@ -92,7 +92,7 @@ export default function LayoutWithMenuComponent({ children }) {
     { name: 'Dashboard', to: '/dashboard', icon: <DashboardIcon /> },
     { name: 'Grupos', to: '/grupos', icon: <PeopleIcon /> },
     { name: 'Redes', to: '/redes', icon: <WifiIcon /> },
-    { name: 'Usuários', to: '/redes', icon: <AssignmentIndIcon /> },
+    { name: 'Usuários', to: '/usuarios', icon: <AssignmentIndIcon /> },
   ];
 
   const handleDrawerOpen = () => {

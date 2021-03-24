@@ -1,4 +1,4 @@
-import CadastrarEditarGrupo from '../../../components/pages/CadastrarEditarGrupo/CadastrarEditarGrupo';
+import CadastrarEditarGrupo from '../../../components/pages/CadastrarEditar/CadastrarEditarGrupo';
 
 export default function EditarGrupo() {
   return <CadastrarEditarGrupo />;
