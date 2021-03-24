@@ -51,20 +51,20 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface IFormData {
   id?: number
+  nome?: string
   descricao?: string
-  ssid?: string
   status?: string
 }
 
-export default function Redes() {
+export default function Grupos() {
   return (
     <SnackbarProvider maxSnack={3}>
-      <Rede />
+      <Grupo />
     </SnackbarProvider>
   );
 }
 
-export function Rede() {
+export function Grupo() {
   const classes = useStyles();
   const router = useRouter();
   const { id } = router.query;
@@ -73,8 +73,8 @@ export function Rede() {
 
   const initialValues: IFormData = {
     id: -1,
+    nome: '',
     descricao: '',
-    ssid: '',
     status: '',
   };
 
@@ -83,12 +83,12 @@ export function Rede() {
   }
 
   const formSchema = Yup.object().shape({
+    nome: Yup.string()
+      .required('Campo obrigatório')
+      .min(5, 'O nome deve ter pelo menos 5 caracteres'),
     descricao: Yup.string()
       .required('Campo obrigatório')
       .min(5, 'O nome deve ter pelo menos 5 caracteres'),
-    ssid: Yup.string()
-      .required('Campo obrigatório')
-      .min(5, 'O SSID deve ter pelo menos 5 caracteres'),
     status: Yup.string()
       .required('Campo obrigatório'),
   });
@@ -109,13 +109,13 @@ export function Rede() {
 
   async function atualizar(values){
     try {
-      const resposta = await atualizarDados('/api/redes', values);
+      const resposta = await atualizarDados('/api/grupos', values);
 
       formik.setSubmitting(false);
 
       if (resposta.sucesso === true) {
-        handleResponse('success', `Rede: ${resposta.rede[0].nome} cadastrado(a) com sucesso!`);
-        Router.push('/redes');
+        handleResponse('success', `Grupo: ${resposta.grupo[0].nome} cadastrado(a) com sucesso!`);
+        Router.push('/grupos');
       } else {
         handleResponse('error', 'Mensagem: ' + resposta.mensagem + '\nErro: ' + resposta.erro);
       }
@@ -125,30 +125,33 @@ export function Rede() {
   }
 
   async function postar(values) {
-    const resposta = await postarDados('/api/redes', values)
+    const resposta = await postarDados('/api/grupos', values)
 
     formik.setSubmitting(false);
 
     if (resposta.sucesso === true) {
-      handleResponse('success', `Rede: ${resposta.rede[0].nome} cadastrado(a) com sucesso!`);
-      Router.push('/redes');
+      handleResponse('success', `Grupo: ${resposta.grupo[0].nome} cadastrado(a) com sucesso!`);
+      Router.push('/grupos');
     } else {
       handleResponse('error', 'Mensagem: ' + resposta.mensagem + '\nErro: ' + resposta.erro);
     }
   }
 
   async function obter(id: string | string[]) {
-    const resposta = await obterDadosId(`/api/redes/${id}`);
-    const rede = resposta.rede[0];
+    const resposta = await obterDadosId(`/api/grupos/${id}`);
+
+    console.log("Obter: " + JSON.stringify(resposta));
+
+    const grupo = resposta.grupo[0];
     formik.setSubmitting(false);
 
     if (resposta.sucesso === true) {
       handleResponse('success', `Registro recuperado com sucesso!`);
       formik.setValues({
-        id: rede.id,
-        ssid: rede.ssid,
-        descricao: rede.descricao,
-        status: rede.status,
+        id: grupo.id,
+        nome: grupo.nome,
+        descricao: grupo.descricao,
+        status: grupo.status,
       });
     } else {
       handleResponse('error', 'Erro: ' + resposta.mensagem);
@@ -166,7 +169,7 @@ export function Rede() {
     <LayoutWithMenu>
       <Container>
         <div className={classes.toolbar}>
-          <Link href='/redes' passHref>
+          <Link href='/grupos' passHref>
             <IconButton aria-label='Voltar'>
               <ArrowBackIcon />
             </IconButton>
@@ -182,17 +185,17 @@ export function Rede() {
               variant='outlined'
               margin='normal'
               fullWidth
-              id='ssid'
-              label='SSID'
-              placeholder='Insira o SSID da rede aqui'
-              name='ssid'
+              id='nome'
+              label='nome'
+              placeholder='Insira o nome do grupo aqui'
+              name='nome'
               required
-              autoComplete='ssid'
+              autoComplete='nome'
               autoFocus
               onChange={formik.handleChange}
-              value={formik.values.ssid}
-              error={formik.touched.ssid && Boolean(formik.errors.ssid)}
-              helperText={formik.touched.ssid && formik.errors.ssid}
+              value={formik.values.nome}
+              error={formik.touched.nome && Boolean(formik.errors.nome)}
+              helperText={formik.touched.nome && formik.errors.nome}
             />
             <TextField
               variant='outlined'
@@ -201,7 +204,7 @@ export function Rede() {
               id='descricao'
               label='Descrição'
               required
-              placeholder='Insira a descrição da rede aqui'
+              placeholder='Insira a descrição do grupo aqui'
               name='descricao'
               autoComplete='descricao'
               onChange={formik.handleChange}
@@ -224,8 +227,8 @@ export function Rede() {
               }}
             >
               <option aria-label='None' value='' />
-              <option value={'Permitido'}>Permitido</option>
-              <option value={'Bloqueado'}>Bloqueado</option>
+              <option value={'Ativo'}>Ativo</option>
+              <option value={'Inativo'}>Inativo</option>
             </Select>
 
             <Button

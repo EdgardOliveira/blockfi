@@ -19,7 +19,7 @@ import PeopleIcon from '@material-ui/icons/People';
 import clsx from 'clsx';
 import { ReactNode, useState } from 'react';
 import Link from 'next/link';
-
+import DashboardIcon from '@material-ui/icons/Dashboard';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -89,7 +89,8 @@ export default function LayoutWithMenuComponent({ children }) {
   // menu
   const menu: Array<{ name: string; to: string; icon?: ReactNode }> = [
     { name: 'Inicial', to: '/', icon: <HomeIcon /> },
-    { name: 'Grupos', to: '/redes', icon: <PeopleIcon /> },
+    { name: 'Dashboard', to: '/dashboard', icon: <DashboardIcon /> },
+    { name: 'Grupos', to: '/grupos', icon: <PeopleIcon /> },
     { name: 'Redes', to: '/redes', icon: <WifiIcon /> },
     { name: 'Usuários', to: '/redes', icon: <AssignmentIndIcon /> },
   ];
