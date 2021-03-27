@@ -57,15 +57,14 @@ https://blockfi.vercel.app
 
 ## Imagens do Layout da Aplicação
 
-<img src="https://github.com/EdgardOliveira/blockfi/blob/main/public/imagens/logotipo.svg" alt="logotipo"  height="600" width="800">
+<img src="https://github.com/EdgardOliveira/blockfi/blob/main/public/imagens/logotipo.svg" alt="logotipo"  height="100" width="100">
 <img src="https://github.com/EdgardOliveira/blockfi/blob/main/public/imagens/arquitetura.png" alt="arquitetura"  height="600" width="800">
 <img src="https://github.com/EdgardOliveira/blockfi/blob/main/public/imagens/inicial.png" alt="inicial"  height="600" width="800">
 <img src="https://github.com/EdgardOliveira/blockfi/blob/main/public/imagens/registro.png" alt="registro"  height="600" width="300">
 <img src="https://github.com/EdgardOliveira/blockfi/blob/main/public/imagens/login.png" alt="login"  height="600" width="300">
 <img src="https://github.com/EdgardOliveira/blockfi/blob/main/public/imagens/dashboard.png" alt="dashboard"  height="600" width="300">
 <img src="https://github.com/EdgardOliveira/blockfi/blob/main/public/imagens/redes.png" alt="redes"  height="600" width="800">
-<img src="https://github.com/EdgardOliveira/blockfi/blob/main/public/imagens/cadastro.png" alt="cadastro"  height="600" width="800">
-<img src="https://github.com/EdgardOliveira/blockfi/blob/main/public/imagens/alterar.png" alt="alterar"  height="600" width="800">
+<img src="https://github.com/EdgardOliveira/blockfi/blob/main/public/imagens/editar.png" alt="alterar"  height="600" width="800">
 
 ## Pré-requisitos
 
