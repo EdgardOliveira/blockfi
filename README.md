@@ -27,13 +27,13 @@
 ## Descrição do projeto 
 
 <p align="justify">
-  BlockFi
+  Frontend e Backend do projeto BlockFi
 </p>
 <p align="justify">
   Aplicação Web do Gestor para Controle de redes Wi-Fi, visando a segurança de redes corporativas 
 </p>
 <p align="justify">
-  Frontend e Backend
+  Trabalho de conclusão de curso do Projeto Hefesto - Turma 02
 </p>
 
 
@@ -57,14 +57,15 @@ https://blockfi.vercel.app
 
 ## Imagens do Layout da Aplicação
 
-<img src="https://github.com/EdgardOliveira/blockfi/blob/main/imagens/logotipo.svg" alt="logotipo"  height="600" width="800">
-<img src="https://github.com/EdgardOliveira/blockfi/blob/main/imagens/inicial.png" alt="inicial"  height="600" width="800">
-<img src="https://github.com/EdgardOliveira/blockfi/blob/main/imagens/registro.png" alt="registro"  height="600" width="300">
-<img src="https://github.com/EdgardOliveira/blockfi/blob/main/imagens/login.png" alt="login"  height="600" width="300">
-<img src="https://github.com/EdgardOliveira/blockfi/blob/main/imagens/dashboard.png" alt="dashboard"  height="600" width="300">
-<img src="https://github.com/EdgardOliveira/blockfi/blob/main/imagens/redes.png" alt="redes"  height="600" width="800">
-<img src="https://github.com/EdgardOliveira/blockfi/blob/main/imagens/cadastro.png" alt="cadastro"  height="600" width="800">
-<img src="https://github.com/EdgardOliveira/blockfi/blob/main/imagens/alterar.png" alt="alterar"  height="600" width="800">
+<img src="https://github.com/EdgardOliveira/blockfi/blob/main/public/imagens/logotipo.svg" alt="logotipo"  height="600" width="800">
+<img src="https://github.com/EdgardOliveira/blockfi/blob/main/public/imagens/arquitetura.png" alt="arquitetura"  height="600" width="800">
+<img src="https://github.com/EdgardOliveira/blockfi/blob/main/public/imagens/inicial.png" alt="inicial"  height="600" width="800">
+<img src="https://github.com/EdgardOliveira/blockfi/blob/main/public/imagens/registro.png" alt="registro"  height="600" width="300">
+<img src="https://github.com/EdgardOliveira/blockfi/blob/main/public/imagens/login.png" alt="login"  height="600" width="300">
+<img src="https://github.com/EdgardOliveira/blockfi/blob/main/public/imagens/dashboard.png" alt="dashboard"  height="600" width="300">
+<img src="https://github.com/EdgardOliveira/blockfi/blob/main/public/imagens/redes.png" alt="redes"  height="600" width="800">
+<img src="https://github.com/EdgardOliveira/blockfi/blob/main/public/imagens/cadastro.png" alt="cadastro"  height="600" width="800">
+<img src="https://github.com/EdgardOliveira/blockfi/blob/main/public/imagens/alterar.png" alt="alterar"  height="600" width="800">
 
 ## Pré-requisitos
 
